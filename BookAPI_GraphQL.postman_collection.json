@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "graphql-books-api",
+    "name": "GraphQL Books API",
+    "description": "Colección GraphQL para la Actividad Formativa U3 - Spring Boot GraphQL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "📚 Queries",
+      "item": [
+        {
+          "name": "1️⃣ Get All Books",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "{\n  books {\n    id\n    title\n    author\n    year\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Obtiene todos los libros disponibles"
+          },
+          "response": []
+        },
+        {
+          "name": "2️⃣ Get Book By ID (ID: 2)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "{\n  bookById(id: \"2\") {\n    id\n    title\n    author\n    year\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Obtiene un libro específico por su ID"
+          },
+          "response": []
+        },
+        {
+          "name": "3️⃣ Get Book By ID (Non-existent ID: 999)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "{\n  bookById(id: \"999\") {\n    id\n    title\n    author\n    year\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Intenta obtener un libro que no existe (devuelve null, comportamiento correcto de GraphQL)"
+          },
+          "response": []
+        },
+        {
+          "name": "4️⃣ Get All Books (Only Titles)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "{\n  books {\n    title\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Obtiene solo los títulos (demuestra la naturaleza declarativa de GraphQL)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "✏️ Mutations",
+      "item": [
+        {
+          "name": "➕ Add New Book (Refactoring)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  addBook(title: \"Refactoring\", author: \"Martin Fowler\", year: 2018) {\n    id\n    title\n    author\n    year\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Crea un nuevo libro y devuelve los datos del libro creado"
+          },
+          "response": []
+        },
+        {
+          "name": "➕ Add New Book (Code Complete)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  addBook(title: \"Code Complete\", author: \"Steve McConnell\", year: 2004) {\n    id\n    title\n    author\n    year\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Crea otro nuevo libro"
+          },
+          "response": []
+        },
+        {
+          "name": "➕ Add New Book (Generic - Edit para cambiar valores)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  addBook(title: \"TU_TITULO_AQUI\", author: \"TU_AUTOR_AQUI\", year: 2024) {\n    id\n    title\n    author\n    year\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Template para agregar cualquier libro. Edita title, author y year con los valores que quieras"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🔄 Workflow Completo (Para grabar el video)",
+      "item": [
+        {
+          "name": "PASO 1 - Listar libros iniciales",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "{\n  books {\n    id\n    title\n    author\n    year\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Paso 1: Muestra los 3 libros precargados"
+          },
+          "response": []
+        },
+        {
+          "name": "PASO 2 - Obtener un libro específico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "{\n  bookById(id: \"2\") {\n    title\n    author\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Paso 2: Obtiene un libro y pide solo ciertos campos"
+          },
+          "response": []
+        },
+        {
+          "name": "PASO 3 - Crear un libro (Mutation)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  addBook(title: \"Refactoring\", author: \"Martin Fowler\", year: 2018) {\n    id\n    title\n    author\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Paso 3: Crea un nuevo libro (mutation)"
+          },
+          "response": []
+        },
+        {
+          "name": "PASO 4 - Listar libros después de crear uno",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "{\n  books {\n    id\n    title\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["graphql"]
+            },
+            "description": "Paso 4: Verifica que ahora hay 4 libros (el nuevo aparece)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
